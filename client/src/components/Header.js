@@ -24,10 +24,15 @@ class Header extends Component {
         );
       default:
         return [
-          <a className="ui item" href="#" key="1">
+          <a
+            className="ui item"
+            href="#"
+            key="1"
+            style={{ paddingBottom: "7px" }}
+          >
             <Payments />
           </a>,
-          <a className="ui item" href="/api/logout" key="2">
+          <a className="ui item" href="/auth/logout" key="2">
             <i className="sign-out icon"></i>
             Logout
           </a>,

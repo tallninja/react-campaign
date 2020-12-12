@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+
+import * as actions from "../actions";
 
 class Payments extends Component {
   render() {
@@ -8,16 +11,24 @@ class Payments extends Component {
         name="Campaign"
         description="5 email credits"
         amount={500}
-        token={(token) => console.log(token)}
+        token={(token) => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
       >
-        <button className="ui green button">
-          <i className="add icon"></i>
-          Add Credits
-        </button>
+        <div className="ui left labeled button" tabIndex="0">
+          <a className="ui basic right pointing label">
+            {this.props.credits} credits
+          </a>
+          <div className="ui green button">
+            <i className="plus icon"></i> Add Credits
+          </div>
+        </div>
       </StripeCheckout>
     );
   }
 }
 
-export default Payments;
+const mapStateToProps = ({ auth }) => {
+  return { credits: auth.credits };
+};
+
+export default connect(mapStateToProps, actions)(Payments);
