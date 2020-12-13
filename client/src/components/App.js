@@ -6,9 +6,8 @@ import * as actions from "../actions";
 
 import Header from "./Header";
 import Landing from "./Landing";
-
-const Surveys = () => <h1>Surveys</h1>;
-const SurveyNew = () => <h1>Create Survey</h1>;
+import Dashboard from "./Dashboard";
+import SurveyNew from "./survey/SurveyNew";
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,7 +21,7 @@ class App extends React.Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/surveys" component={Surveys} />
+            <Route exact path="/surveys" component={Dashboard} />
             <Route path="/surveys/new" component={SurveyNew} />
           </div>
         </BrowserRouter>
