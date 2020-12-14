@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import history from "../../history";
+import formValidator from "../../utils/formValidator";
 import SurveyField from "./SurveyField";
 
 const FIELDS = [
@@ -52,22 +52,32 @@ class SurveyForm extends Component {
 
   render() {
     return (
-      <form
-        className="ui form"
-        onSubmit={this.props.handleSubmit(this.props.onSubmit)}
-      >
-        {this.renderFields()}
+      <div>
+        <h1>Create Your Survey</h1>
+        <form
+          className="ui form error"
+          onSubmit={this.props.handleSubmit(this.props.onSubmit)}
+        >
+          {this.renderFields()}
+          <div style={{ marginTop: "10px" }}>
+            <Link to="/surveys" className="ui red left floated button">
+              <i className="reply icon"></i>
+              Cancel
+            </Link>
 
-        <Link to="/surveys" className="ui red left floated button">
-          Cancel
-        </Link>
-
-        <button type="submit" className="ui teal right floated button">
-          Submit
-        </button>
-      </form>
+            <button type="submit" className="ui teal right floated button">
+              Next
+              <i className="angle right icon"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
 
-export default reduxForm({ form: "surveyForm" })(SurveyForm);
+export default reduxForm({
+  validate: formValidator,
+  destroyOnUnmount: false,
+  form: "surveyForm",
+})(SurveyForm);

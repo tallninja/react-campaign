@@ -9,7 +9,7 @@ class Header extends Component {
     switch (this.props.auth) {
       case null:
         return (
-          <a className="ui item" href="#">
+          <a className="ui item" href="/#">
             <div className="ui active tiny centered inline loader"></div>
           </a>
         );
@@ -24,14 +24,7 @@ class Header extends Component {
         );
       default:
         return [
-          <a
-            className="ui item"
-            href="#"
-            key="1"
-            style={{ paddingBottom: "7px" }}
-          >
-            <Payments />
-          </a>,
+          <Payments className="ui item" key="1" />,
           <a className="ui item" href="/auth/logout" key="2">
             <i className="sign-out icon"></i>
             Logout

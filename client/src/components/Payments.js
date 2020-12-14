@@ -15,7 +15,7 @@ class Payments extends Component {
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
       >
         <div className="ui left labeled button" tabIndex="0">
-          <a className="ui basic right pointing label">
+          <a className="ui basic right pointing label" href="/#">
             {this.props.credits} credits
           </a>
           <div className="ui green button">
